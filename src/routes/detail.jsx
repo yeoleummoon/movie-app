@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Moviedetail from "../components/moviedetail";
 
 function Detail(){
   const [detail, setDetail] = useState([]);
@@ -12,6 +13,7 @@ function Detail(){
     const json =  await response.json();
     setDetail(json.data.movie);
     setLoading(false);
+    console.log(json);
   };
     getDetail();
   },[id]);
@@ -20,8 +22,18 @@ function Detail(){
   <h1>Detail</h1>
   {loading ? <h2>Loading...</h2> : 
     detail.map((movie) =>
-    <h3 key={movie.id}>{movie.title}</h3>
-    )}
+    <Moviedetail 
+    key={movie.id}
+    coverImg={movie.small_cover_image} 
+    year={movie.year}
+    runtime={movie.runtime}
+    title={movie.title}
+    rating={movie.rating}
+    download={movie.download_count}
+    like={movie.like_count}
+    summary={movie.summary}
+    genres={movie.genres}    
+    />)}
   </div>
   );
 }
