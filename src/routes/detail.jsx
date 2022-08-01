@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Moviedetail from "../components/moviedetail";
+import styles from "./detail.module.css";
+
 
 function Detail(){
   const [detail, setDetail] = useState([]);
@@ -13,29 +15,33 @@ function Detail(){
     const json =  await response.json();
     setDetail(json.data.movie);
     setLoading(false);
-    console.log(json);
   };
     getDetail();
   },[id]);
   return ( 
-  <div>
-  <h1>Detail</h1>
-  {loading ? <h2>Loading...</h2> : 
-    detail.map((movie) =>
+  <div className={styles.container}>
+  {loading ? "" : <h1>Detail</h1>}
+  {loading ? 
+  (<div className={styles.loader}>
+      <span>Loading...</span>
+  </div>) :(
+    <div className={styles.index}>
     <Moviedetail 
-    key={movie.id}
-    coverImg={movie.small_cover_image} 
-    year={movie.year}
-    runtime={movie.runtime}
-    title={movie.title}
-    rating={movie.rating}
-    download={movie.download_count}
-    like={movie.like_count}
-    summary={movie.summary}
-    genres={movie.genres}    
-    />)}
+    key={detail.id}
+    coverImg={detail.medium_cover_image} 
+    year={detail.year}
+    runtime={detail.runtime}
+    title={detail.title}
+    rating={detail.rating}
+    download={detail.download_count}
+    like={detail.like_count}
+    summary={detail.summary}
+    genres={detail.genres}    
+    />
+    </div>
+    )
+  }
   </div>
   );
 }
-
 export default Detail;

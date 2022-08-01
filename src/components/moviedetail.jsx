@@ -1,19 +1,17 @@
 import PropTypes from "prop-types";
 
-
-function moviedetail({coverImg, title, year, summary, genres, runtime, rating, download, like}){
+function moviedetail({coverImg, title, year, genres, runtime, rating, download, like}){
   return (
-  <div className="container">
+  <div>
     <img src={coverImg} alt={title} />
-      <div className="index">
+      <div>
       <h2>{title}</h2>
-        <span>{year}|{runtime}</span>
+        <span>{year}년 | {runtime}분</span>
         <div>
-          <>{rating}</>
-          <>{download}</>
-          <>{like}</>
+          <span>rate : {rating}</span>
+          <span>download : {download}</span>
+          <span>like :{like}</span>
         </div>
-        <p>{summary}</p>
     <ul>
     {genres.map(ge => <li key={ge}>{ge}</li>)}
     </ul>

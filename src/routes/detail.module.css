@@ -1,9 +1,11 @@
 .container {
   height: 100%;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
-
 
 .loader {
   width: 100%;
@@ -20,18 +22,7 @@
   font-size: 30px;
 }
 
-
-.movies {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(400px, 1fr));
-  grid-gap: 60px;
-  width: 80%;
-  padding-top: 70px;
-}
-
-@media screen and (max-width: 1090px) {
-  .movies {
-    grid-template-columns: 1fr;
-    width: 100%;
-  }
+.index span {
+  font-size: 18px;
+  margin-right: 15px;
 }
